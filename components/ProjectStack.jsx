@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import Link from 'next/link';
 
 export default function ProjectStack({ projects }) {
   useEffect(() => {
@@ -27,18 +28,16 @@ export default function ProjectStack({ projects }) {
     <section className="projects-stack-container" aria-label="Projects">
       {projects.map((project, index) => (
         <article className="stack-card" style={{ '--i': index }} key={`${project.title}-${index}`}>
+          <Link className="stack-card-link" href={`/projects/${project.slug}`} aria-label={`View ${project.title} case study`}>
           <div className="stack-card-inner">
             <div className="stack-card-media">
               <div className="purple-stripe" />
               <div className="mockup-frame">
-                {project.image ? (
-                  <img src={project.image} alt={`${project.title} preview`} />
-                ) : (
-                  <div className="mockup-placeholder"> 
-                    <span>{project.title}</span>
-                    <small>Project image coming soon</small>
-                  </div>
-                )}
+                <div className="mockup-placeholder"> 
+                  <span>{project.title}</span>
+                  <small>Project image coming soon</small>
+                </div>
+                {project.image ? <img src={project.image} alt={`${project.title} preview`} onError={(event) => { event.currentTarget.style.display = 'none'; }} /> : null}
               </div>
             </div>
             <div className="stack-card-content">
@@ -47,6 +46,7 @@ export default function ProjectStack({ projects }) {
               <span className="stack-tag">{project.stack}</span>
             </div>
           </div>
+          </Link>
         </article>
       ))}
     </section>

@@ -39,23 +39,51 @@ button { font: inherit; }
 .purple-button { background: var(--purple); color: #fff; box-shadow: 0 .4rem 1.3rem rgba(115,20,255,.2); }
 .outline-button { border: 1px solid #7d7f88; color: var(--ink); }
 .purple-button:hover, .outline-button:hover { transform: translateY(-3px); }
-.portrait-ring { width: min(30rem, 90%); aspect-ratio: 1; justify-self: center; display: grid; place-items: center; border: 1px solid var(--soft-purple); border-radius: 50%; }
-.portrait-ring img { width: 81%; height: 81%; border-radius: 50%; object-fit: cover; filter: grayscale(100%); }
+.portrait-ring { position: relative; isolation: isolate; width: min(30rem, 90%); aspect-ratio: 1; justify-self: center; display: grid; place-items: center; border-radius: 50%; }
+.portrait-ring::before { content: ''; position: absolute; inset: 0; z-index: -1; border: 3px solid transparent; border-radius: inherit; background: linear-gradient(var(--white), var(--white)) padding-box, conic-gradient(from 18deg, #7314ff 0deg 58deg, #dbc5ff 58deg 76deg, rgba(255,255,255,.96) 76deg 186deg, #8b45ff 186deg 238deg, #eadfff 238deg 264deg, rgba(255,255,255,.96) 264deg 360deg) border-box; animation: portrait-orbit 16s linear infinite; }
+.portrait-ring img { position: relative; z-index: 1; width: 81%; height: 81%; border-radius: 50%; object-fit: cover; filter: grayscale(100%); }
+
+@keyframes portrait-orbit { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait-ring::before { animation: none; }
+}
 
 .template-heading { margin: 0 0 2rem; font-size: clamp(3.1rem, 5.2vw, 5rem); font-weight: 800; letter-spacing: -.09em; line-height: .95; }
 .template-heading span { color: var(--purple); }
 .projects-section { padding: 1rem 0 8rem; }
 .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 2.4rem; row-gap: 2.6rem; }
 .project-card { min-width: 0; }
+.project-card-link { display: block; color: inherit; text-decoration: none; }
+.project-card-link:hover .project-art img { transform: scale(1.03); }
+.project-card-link:focus-visible { outline: 3px solid var(--purple); outline-offset: .4rem; border-radius: 1.1rem; }
 .project-art { position: relative; height: 20rem; overflow: hidden; display: grid; place-items: center; border-radius: 1.1rem; background: var(--panel); }
 .project-art::before, .project-art::after { content: ''; position: absolute; width: 140%; height: 4.3rem; border: 1.1rem solid var(--purple); border-left: 0; border-right: 0; transform: rotate(-15deg); }
 .project-art::after { transform: rotate(77deg); }
 .project-art strong { position: relative; z-index: 1; color: #fff; font-size: 2rem; letter-spacing: -.07em; text-align: center; }
+.project-art img { position: relative; z-index: 2; width: 100%; height: 100%; object-fit: cover; transition: transform .25s ease; }
 .project-body h3 { display: flex; align-items: center; gap: .6rem; margin: 1.25rem 0 .6rem; font-size: 1.4rem; letter-spacing: -.05em; }
 .project-body h3::after { content: '↗'; display: grid; width: 1.25rem; height: 1.25rem; place-items: center; border: 2px solid var(--purple); border-radius: 50%; color: var(--purple); font-size: .75rem; }
 .project-body p { max-width: 36rem; margin: 0; color: var(--muted); font-size: 1.05rem; line-height: 1.3; }
 .project-stack { margin-top: .65rem; color: var(--purple); font-size: .78rem; font-weight: 700; }
 .project-link { display: block; margin-top: .7rem; color: var(--purple); font-size: .75rem; font-weight: 700; text-decoration: none; }
+
+.project-detail { padding: 4rem 0 8rem; }
+.back-link { display: inline-block; margin-bottom: 3rem; color: var(--purple); font-weight: 700; text-decoration: none; }
+.project-eyebrow { margin: 0 0 .8rem; color: var(--purple); font-size: .85rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.project-detail-description { max-width: 48rem; margin: -1rem 0 1rem; color: var(--muted); font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.4; }
+.project-detail-stack { margin: 0 0 3rem; color: var(--purple); font-weight: 700; }
+.project-gallery { display: grid; gap: 2rem; }
+.project-gallery figure { margin: 0; overflow: hidden; border-radius: 1.25rem; box-shadow: 0 1rem 2.5rem rgba(32, 33, 43, .12); }
+.project-gallery img { display: block; width: 100%; height: auto; }
+.project-gallery-empty { display: grid; min-height: 20rem; margin: 0; place-items: center; border-radius: 1.25rem; background: var(--panel); color: var(--muted); }
+.project-about { display: grid; grid-template-columns: minmax(16rem, .85fr) minmax(0, 1.7fr); gap: clamp(2rem, 6vw, 5rem); margin: 1rem 0 4rem; align-items: start; }
+.project-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 2.25rem 1rem; margin: 0; padding: 1.55rem 1.7rem; border: 3px solid var(--purple); border-radius: 1.25rem; box-shadow: 0 .4rem 1rem rgba(115,20,255,.16); }
+.project-facts div:last-child { grid-column: 1 / -1; }
+.project-facts dt { margin-bottom: .35rem; color: var(--muted); font-size: .95rem; }
+.project-facts dd { margin: 0; color: var(--ink); font-size: clamp(1.2rem, 2vw, 1.7rem); font-weight: 700; letter-spacing: -.045em; }
+.project-about-copy h2 { margin: 0 0 1.3rem; color: var(--ink); font-size: clamp(2.8rem, 5vw, 4.8rem); letter-spacing: -.075em; line-height: .9; }
+.project-about-copy p { margin: 0 0 1.25rem; color: var(--muted); font-size: clamp(1.05rem, 1.75vw, 1.35rem); line-height: 1.3; letter-spacing: -.035em; }
 
 .experience-section, .skills-section, .story-section { padding: 3rem 0 8rem; }
 .experience-layout { display: grid; grid-template-columns: 17rem 1fr; gap: 3.5rem; }
@@ -274,6 +302,10 @@ html.dark .project-stack-item { background: var(--white); box-shadow: 0 -12px 32
   background: var(--white);
   border-radius: 2rem;
 }
+.stack-card-link { display: block; color: inherit; text-decoration: none; }
+.stack-card-link:focus-visible { outline: 3px solid var(--purple); outline-offset: .5rem; border-radius: 2rem; }
+.stack-card-link:hover .mockup-frame img { transform: scale(1.025); }
+.mockup-frame img { transition: transform .25s ease; }
 
 .stack-card-media {
   position: relative;
@@ -305,6 +337,9 @@ html.dark .project-stack-item { background: var(--white); box-shadow: 0 -12px 32
 }
 
 .mockup-frame img {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
   width: 100%;
   height: 100%; 
   object-fit: cover;
@@ -358,6 +393,7 @@ html.dark .project-stack-item { background: var(--white); box-shadow: 0 -12px 32
 }
 
 @media (max-width: 640px) {
+  .project-about { grid-template-columns: 1fr; margin-bottom: 3rem; }
   .projects-stack-container { width: calc(100% - 2.5rem); }
   .stack-card { 
     top: calc(4.5rem + (var(--i) * 10px));

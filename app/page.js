@@ -2,45 +2,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ProjectCard from '../components/ProjectCard';
 import Experience from '../components/Experience';
-
-const projects = [
-  {
-    title: 'SafeHaven Platform',
-    description: 'A responsive platform with customer-facing interfaces and backend integration.',
-    stack: 'React / TypeScript / Tailwind',
-    href: '#contact'
-  },
-  {
-    title: 'CloudCard Institution Dashboard',
-    description: 'An integrated administrative dashboard with responsive interfaces and API integrations.',
-    stack: 'Next.js / TypeScript / Tailwind',
-    href: '#contact'
-  },
-  {
-    title: 'Card Core Admin Dashboard',
-    description: 'Administrative dashboard functionality supporting platform monitoring and operations.',
-    stack: 'React / TypeScript / REST APIs',
-    href: '#contact'
-  },
-  {
-    title: 'International Student Loan Platform',
-    description: 'A platform supporting students seeking educational funding opportunities abroad.',
-    stack: 'React / JavaScript / Responsive UI',
-    href: 'https://github.com/ope10'
-  },
-  {
-    title: 'Construction Company Website',
-    description: 'A fully responsive corporate website designed for a clear business presence.',
-    stack: 'React / HTML / CSS',
-    href: 'https://github.com/ope10/Construction_website'
-  },
-  {
-    title: 'Cardholder Dashboard',
-    description: 'A responsive dashboard experience built collaboratively for cardholders.',
-    stack: 'React / TypeScript / API Integration',
-    href: '#contact'
-  }
-];
+import projects from '../data/projects';
 
 const experiences = [
   {
