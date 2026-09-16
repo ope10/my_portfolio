@@ -1,5 +1,24 @@
 const projects = [
   {
+    slug: 'cinar-school-website',
+    title: 'CINAR School Website',
+    description: 'A polished, responsive school website that presents the primary and senior school experience, admissions, learning stages, and student outcomes.',
+    stack: 'React / Next.js / Responsive UI',
+    client: 'CINAR International School',
+    year: '2026',
+    role: 'Frontend Developer',
+    about: 'A premium school website designed to help prospective families explore the CINAR experience, from early years through senior school, while keeping key admissions and academic information easy to find.',
+    image: '/images/projects/cinar-school-home.png',
+    images: [
+      '/images/projects/cinar-school-home.png',
+      '/images/projects/cinar-school-primary.png',
+      '/images/projects/cinar-school-classes.png',
+      '/images/projects/cinar-school-senior.png',
+      '/images/projects/cinar-school-results.png'
+    ],
+    href: '#contact'
+  },
+  {
     slug: 'safe-haven',
     title: 'Safe Haven Website',
     description: 'Financial platform with secure, responsive customer-facing experiences and backend integration.',
